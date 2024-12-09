@@ -30,7 +30,7 @@ const ComponentSearch = () => {
                     setLoading(false);
                 });
         }
-    }, [searchTerm]); 
+    }, [searchTerm, API_LINK, API_KEY]); 
 
     const handleSearch = (e) => {
        const query = e.target.value
