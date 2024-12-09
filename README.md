@@ -1,8 +1,41 @@
-# React + Vite
+# Recipe Search Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple web application to search for recipes using the Spoonacular API. It allows users to search for recipes by name, view detailed recipe instructions, and browse images.
 
-Currently, two official plugins are available:
+## Features
+- Search for recipes by name.
+- View a list of recipe results with images.
+- Click on a recipe to view detailed instructions.
+- Responsive design.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+- **React**: For building the user interface.
+- **Vite**: For fast development and bundling.
+- **Axios**: For making HTTP requests to the Spoonacular API.
+- **Spoonacular API**: Provides access to recipes and their instructions.
+
+## Setup
+
+To run the project locally, follow these steps:
+
+### 1. Clone the repository
+git clone https://github.com/KaterinaSmi/Recipe_Search.git
+### 2. Install dependencies
+cd Recipe_Search
+npm install
+### 3.Create .env file
+VITE_API_BASE_URL=https://api.spoonacular.com/recipes
+VITE_API_KEY=your_spoonacular_api_key
+### 4. Run the development server
+npm run dev
+
+## Deployment
+This application is deployed on Render. Any changes pushed to the main branch will automatically trigger a deployment.
+
+## License 
+This project is licensed under the MIT License.
+
+## Acknoledgements
+Spoonacular API: https://spoonacular.com/
+React: https://reactjs.org/
+Vite: https://vitejs.dev/
