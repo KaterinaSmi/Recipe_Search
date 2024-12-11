@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "serve -s dist",
     "dev": "vite --port 10000 --host",
     "build": "vite build",
     "lint": "eslint .",
