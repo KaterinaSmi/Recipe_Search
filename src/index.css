@@ -40,17 +40,22 @@ h2{
   font-size: 3rem;
 }
 
+.component-list, .transition-container {
+  width: 100%; /* Full width to avoid shifting when switching */
+  max-width: 700px; /* Limit the width for better responsiveness */
+  position: relative;
+}
 /* General transition styles */
 .transition-container {
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.3s ease;
   opacity: 0;
-  transform: translateY(-20px); /* Start position for the sliding effect */
+  transform: scale(0.95); /* Start position for the sliding effect */
   visibility: hidden; /* Hide the element initially */
 }
 
 .transition-container.show {
   opacity: 1;
-  transform: translateY(0); /* Move the element into view */
+  transform:  scale(1); /* Move the element into view */
   visibility: visible; /* Make the element visible */
 }
 
@@ -64,7 +69,7 @@ button {
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.25s;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -72,6 +77,7 @@ button {
 
 button:hover {
   border-color: orange;
+  background-color: #333333; /* Slight darkening on hover */
   box-shadow: 0 0 10px 3px rgba(255, 165, 0, 0.7); /* Glowing effect */
 }
 
@@ -84,28 +90,95 @@ button:focus-visible {
   background-color: orange;
   color: white;
   margin-left: 20px;
+  transition: background-color 0.3s ease;
 }
 
 .open-btn:hover {
-  background-color: orange; /* Change color on hover */
+  background-color: #e88f00; /* Slightly lighter orange */
 }
 
 .back-btn {
   margin-top: 20px;
   background-color: orange;
   color: white;
+  transition: background-color 0.3s ease;
 }
+
+.back-btn:hover {
+  background-color: #e88f00; /* Slightly lighter orange */
+}
+
 li{
   margin-bottom: 15px;
   list-style-type: none;
 }
+
+/* Ingredients */
+
+.ingredient-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.ingredient-item .ingredient-icon {
+  margin-right: 10px; /* Space between the icon and the text */
+  color: #4caf50; /* Icon color (green for checkmark) */
+  font-size: 1.2em; /* Size of the icon */
+}
+
+.ingredient-item:hover {
+  background-color: #f0f0f0; /* Hover effect for better user experience */
+  border-radius: 5px;
+}
+.ingredient-icon {
+  color: orange;  /* Set the color to orange */
+  font-size: 20px; /* Adjust size if needed */
+  margin-right: 10px; /* Space between icon and text */
+}
+
+ul {
+  list-style-type: none; /* Removes default list bullets */
+  padding-left: 0;
+}
+
 .search input {
   height: 30px;
   width: 370px;
   border-radius: 18px;
+  transition: width 0.3s ease;
+}
+
+.search input:focus {
+  width: 400px; /* Slightly expand input on focus */
+}
+/* Spinner loading */
+/* Custom spinner CSS */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;  /* Adjust this based on your design */
+}
+
+.loading-spinner .spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #ff6600;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
 }
 
 
+/* Light mode styles */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

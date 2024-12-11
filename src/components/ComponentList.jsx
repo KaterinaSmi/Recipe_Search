@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import ItemsDisplay from './ItemsDisplay';
 import PropTypes from 'prop-types';
 
-const ComponentList = ({recipes}) => {
+const ComponentList = ({recipes , loading}) => {
     const [showDetails, setShowDetails] = useState(false);  // Controls whether the details are shown
     const [selectedRecipe, setSelectedRecipe] = useState(null);  // Stores the selected recipe
-
+  
     const handleShowDetails = (recipe) => {
         setSelectedRecipe(recipe);
         setShowDetails(true);  // Show recipe details
@@ -13,6 +13,14 @@ const ComponentList = ({recipes}) => {
 
     const handleGoBack = () => {
         setShowDetails(false);  // Hide recipe details and show the list again
+    }
+    if (loading) {
+        return (
+            <div className="loading-spinner">
+                <i className="fas fa-spinner fa-spin"></i>
+                <p>Loading recipes...</p>
+            </div>
+        );
     }
 
   return (
@@ -46,6 +54,7 @@ ComponentList.propTypes = {
             title: PropTypes.string.isRequired, 
         })
     ).isRequired, // Recipes must be an array and cannot be null or undefined
+    loading: PropTypes.bool.isRequired,
 };
 
 export default ComponentList;

@@ -19,18 +19,23 @@ const ComponentSearch = () => {
     useEffect(() => {
         if (searchTerm) {  // Fetch recipes only if there is a searchTerm
             setLoading(true); // Show loading indicator while fetching
-            axios.get(`${API_LINK}query=${searchTerm}&apiKey=${API_KEY}`)
-                .then(response => {
+            const timer = setTimeout(() => {
+                axios
+                  .get(`${API_LINK}query=${searchTerm}&apiKey=${API_KEY}`)
+                  .then(response => {
                     setRecipes(response.data.results);
                     setLoading(false); // Hide loading after fetching
-                })
-                .catch((error) => {
+                  })
+                  .catch((error) => {
                     console.error(error);
                     setError(error);
                     setLoading(false);
-                });
-        }
-    }, [searchTerm, API_LINK, API_KEY]); 
+                  });
+              }, 500); // Adding a delay of 500ms to show the loading spinner more visibly
+        
+              return () => clearTimeout(timer); // Clean up the timeout on component unmount
+            }
+          }, [searchTerm, API_LINK, API_KEY]);
 
     const handleSearch = (e) => {
        const query = e.target.value
@@ -38,15 +43,18 @@ const ComponentSearch = () => {
     }
   return (
     <div className='search'>
+
         <h2>Find recipe</h2>
         <input type="text"
         value={searchTerm}
         onChange={handleSearch}
         placeholder="Type a recipe name (e.g., chicken)"
         />
-          {loading && <p>Loading...</p>}
-          {error && <p>Error: {error}</p>}
-        <ComponentList recipes={recipes}/>
+        
+
+      {error && <p>Error occurred, try again later.</p>}
+          
+        <ComponentList recipes={recipes} loading={loading}/>
     </div>
   )
 }
