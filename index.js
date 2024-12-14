@@ -92,6 +92,10 @@ app.delete('/api/recipes/delete/:id', async (req, res) => {
 // Middleware to serve frontend assets (for production builds)
 app.use(express.static('dist'));
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
